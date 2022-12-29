@@ -17,10 +17,11 @@ class IdentityController extends Controller
      */
     public function index()
     {
-        $id = 1;
-        $identities = Identity::where('id',$id)->first();
-        
-        return view('admin.identity.index', compact('identities'));
+        // Mengambil semua data dari database
+        $identities = Identity::all();
+
+        // Mengirim data ke view dashboard admin
+        return view('admin.identity.index', ['identities' => $identities]);
     }
 
 
@@ -35,7 +36,7 @@ class IdentityController extends Controller
     {
         $id = 1;
         $identity = Identity::find($id);
-        return view('admin.identity.edit', compact('idenity'));
+        return view('admin.identity.index', compact('identity'));
     }
 
     /**
@@ -45,32 +46,18 @@ class IdentityController extends Controller
      * @param  mixed $identity
      * @return void
      */
-    public function update(Request $request, Identity $identity)
+    public function update(Request $request, Identity $identity) // <-- Request form post and $identity (from name params at url)
     {
         $this->validate($request, [
-            'logo'             => 'required|image|mimes:png,jpg,jpeg',
-            'favicon'          => 'required|image|mimes:png,jpg,jpeg',
             'name'             => 'required',
-            'phone'            => 'phone',
+            'phone'            => 'required', // phone is not number, it's string value
             'email'            => 'email',
         ]); 
 
-    //hapus image lama
-    Storage::disk('local')->delete('public/identities/'.basename($identity->logo));
-    Storage::disk('local')->delete('public/identities/'.basename($identity->favicon));
-
-    //upload image baru
-    $logo = $request->file('logo');
-    $logo->storeAs('public/idenities', $logo->hashName());
-
-    $favicon = $request->file('favicon');
-    $favicon->storeAs('public/idenities', $favicon->hashName());
 
     //update dengan image baru
     $identity = identity::findOrFail($identity->id);
     $identity->update([
-        'logo'                          => $logo->hashName(),
-        'favicon'                       => $favicon->hashName(),
         'name'                          => $request->name,
         'description'                   => $request->description,
         'address'                       => $request->address,

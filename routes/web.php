@@ -100,8 +100,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
 
         // //route resource identity
-        // Route::get('/identity', [IdentityController::class, 'index'])->name('admin.identity.index');
-        // Route::post('/identity/update', [IdentityController::class, 'index'])->name('admin.identity.update');
+        Route::get('/identity', [IdentityController::class, 'index'])->name('admin.identity.index');
+        Route::post('/identity/update', [IdentityController::class, 'index']);
+        Route::put('/identity/update/{identity}', [IdentityController::class, 'update'])->name('admin.identity.update');
 
         // Route::get('/logo', [LogoController::class, 'index'])->name('admin.logo.index');
         // Route::post('/logo/update', [LogoController::class, 'index'])->name('admin.logo.update');
