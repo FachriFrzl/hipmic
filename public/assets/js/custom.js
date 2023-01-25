@@ -75,27 +75,28 @@ $(function(){
 
 // Counter
 
-(function() {
-  document.querySelectorAll('.counter').forEach(item => {
-     let timer;
-     let start = parseInt(item.innerText, 10),
-         to = parseInt(item.getAttribute('data-to') || 0, 10),
-         speed = parseInt(item.getAttribute('data-speed') || 0, 10);
-     let count = start;
-     if(start < to) {
-        timer = setInterval(() => {
-           count++;
+const counters = document.querySelectorAll(".count");
+const speed = 200;
 
-           item.innerText = count;
-           if(count >= to) {
-              clearInterval(timer);
-           }
-        }, (speed / (to - start)));
-     
-     }
+// The code to start the animation is now wrapped in a function
+const startCounters = () => {
+  counters.forEach((counter) => {
+    const updateCount = () => {
+      const target = parseInt(+counter.getAttribute("data-target"));
+      const count = parseInt(+counter.innerText);
+      const increment = Math.trunc(target / speed);
+      if (count < target) {
+        counter.innerText = count + increment;
+        setTimeout(updateCount, 1);
+      } else {
+        count.innerText = target;
+      }
+    };
+    updateCount();
   });
-})();
+}
 
-
-
-
+// On the first scroll in this window, call the function to start the counters
+window.addEventListener('scroll', startCounters, {
+  once: true
+});

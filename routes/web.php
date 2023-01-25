@@ -16,8 +16,8 @@ Route::resource('/contact', \App\Http\Controllers\FcontactController::class,['as
 Route::get('/prestasi', [\App\Http\Controllers\FprestasiController::class,'index']) ->name('prestasi');
 Route::get('/fasilitas', [\App\Http\Controllers\FfacilityController::class,'index']) ->name('fasilitas');
 Route::get('/testimony', [\App\Http\Controllers\FtestimonyController::class,'index']) ->name('testimony');
+Route::get('/sambutan', [\App\Http\Controllers\FsambutanController::class,'index']) ->name('sambutan');
 
-Route::get('/sambutan', function () {return view('front.pages.sambutan');})->name('sambutan');
 Route::get('/tentang-kami', function () {return view('front.pages.tentang-kami');})->name('tentang-kami');
 Route::get('/akreditasi', function () {return view('front.pages.akreditasi');})->name('akreditasi');
 Route::get('/karir', function () {return view('front.pages.karir');})->name('karir');
@@ -104,8 +104,16 @@ Route::prefix('admin')->group(function () {
         Route::post('/identity/update', [IdentityController::class, 'index']);
         Route::put('/identity/update/{identity}', [IdentityController::class, 'update'])->name('admin.identity.update');
 
-        // Route::get('/logo', [LogoController::class, 'index'])->name('admin.logo.index');
-        // Route::post('/logo/update', [LogoController::class, 'index'])->name('admin.logo.update');
+        
+        //route resource categories
+        Route::resource('/logo', LogoController::class,['as' => 'admin']);
+
+        //route resource about
+        Route::resource('/about', AboutController::class,['as' => 'admin']);
+       
+        //route resource about
+        Route::resource('/sambutan', SambutanController::class,['as' => 'admin']);
+        
 
 
     });

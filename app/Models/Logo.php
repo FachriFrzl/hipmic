@@ -15,24 +15,29 @@ class Logo extends Model
      * @var array
      */
     protected $fillable = [
-        'logo', 'favicon'
+        'company_logo','favicon'
     ];
 
-    public function getLogo()
+    /**
+     * company_logo
+     *
+     * @return Attribute
+     */
+    protected function company_logo(): Attribute
     {
-        if(!$this->logo){
-        return asset('/storage/identities/default.png');
-        }
-
-        return asset('/storage/identities/'.$this->logo);
+        return Attribute::make(
+            get: fn ($value) => asset('/storage/identities/' . $value),
+        );
     }
-
-    public function getFavicon()
+    /**
+     * favicon
+     *
+     * @return Attribute
+     */
+    protected function favicon(): Attribute
     {
-        if(!$this->favicon){
-        return asset('/storage/identities/default.png');
-        }
-
-        return asset('/storage/identities/'.$this->favicon);
+        return Attribute::make(
+            get: fn ($value) => asset('/storage/identities/' . $value),
+        );
     }
 }

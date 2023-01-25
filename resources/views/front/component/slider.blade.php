@@ -1,21 +1,13 @@
 <section class="slider-home">
-  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
   <div class="carousel-inner">
   @foreach($sliders as $slider)
     <div class="main-slider-home carousel-item {{$loop->iteration == 1 ? 'active' : ''}}" data-bs-interval="10000" style="background-image:url({{asset('/storage/sliders/'.$slider->image)}});">
-      <div class="slide-text d-none d-md-block">
-        <div class="row">
-          <div class="col-md-9">
-            <h1 class="slide-title">{{ $slider->title }}</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-7">
-           <h5 class="t-white mb-30">{{ $slider->description }}</h5>
-            <a href="{{ $slider->link }}" class="btn btn-salaam"> {{ $slider->button }}</a>
-          </div>
-        </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h1 class="slide-title">{{ $slider->title }}</h1>
+        <p class="t-white">{{ $slider->description }}</p>
+        <a href="{{ $slider->link }}" class="btn btn-salaam"> {{ $slider->button }}</a>
       </div>
     </div>
     @endforeach

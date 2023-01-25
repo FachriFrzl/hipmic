@@ -1,106 +1,20 @@
-@extends('layouts.app', ['title' => 'Idenity - Admin'])
+@extends('layouts.app', ['title' => 'Logo - Admin'])
 
 @section('content')
-  <div class="container-fluid">
-    <!-- Small boxes (Stat box) -->
-    <div class="row">
-      <!-- konten -->
-      <div class="col-md-12">
-        <!-- general form elements -->
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Logo Website</h3>
-          </div>
-          <!-- /.card-header -->
-          <!-- form start -->
-          <form action="/logo/update" role="form" id="updateform" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="card-body">
-              @if($settinglogo->logo)
-              <div class="form-group">
-                <label class="control-label col-md-6">Gambar Logo<span class="required">
-                  * </span>
-                </label>
-                <div class="col-md-4">
-                  <img src="{{$settinglogo->getLogo()}}" style="max-height: 50px;"/>
-                </div>
-              </div>
-              <div class="col-md-4"><a href="/hapuslogo" class="btn btn-sm btn-danger">Hapus</a></div><br>
-              @else @endif
-
-              <div class="form-group" id="upload_gambar_utama">
-                <label class="control-label col-md-6">Gambar Logo  (Rekomendasi width: 155px, height: 36px)<span class="required">
-                  * </span>
-                </label>
-                <div class="col-md-4">
-                  <input type="file"  name="upload_utama" id="upload_utama" class="form-control"/>
-                </div>
-              </div>
-
-              <!-- Gambar Favicon -->
-              @if($settinglogo->favicon)
-              <div class="form-group">
-                <label class="control-label col-md-3">Gambar Favicon<span class="required">
-                  * </span>
-                </label>
-                <div class="col-md-4">
-                  <img src="{{$settinglogo->getFavicon()}}" width="16"/>
-                </div>
-              </div>
-              <div class="col-md-4"><a href="/hapusfavicon" class="btn btn-sm btn-danger">Hapus</a></div><br>
-              @else @endif
-
-              <div class="form-group" id="upload_gambar_utama">
-                <label class="control-label col-md-6">Gambar Favicon (Rekomendasi width: 38px, height: 44px)<span class="required">
-                  * </span>
-                </label>
-                <div class="col-md-4">
-                  <input type="file"  name="upload_icon" id="upload_icon" class="form-control"/>
-                </div>
-              </div>
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-              {{-- <button type="button" id="submit" class="btn btn-primary">Submit</button> --}}
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form>
+<main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300 mt-4">
+    <div class="container mx-auto px-6 py-8">
+    @foreach($logos as $logo)
+    <div class="float-end flex">
+            <a href="{{ route('admin.logo.edit', $logo->id) }}" class="bg-indigo-600 px-2 py-2 mx-2 rounded shadow-sm text-xs text-white focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">  <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></a>
         </div>
-        <!-- /.card -->
+        <div class="mt-4 mb-4">
+            <h3>Logo</h3>
+            <img src="{{asset('storage/identities/'.$logo->company_logo)}}" class="thumbnails">
+            <hr>
+            <h4>Favicon</h4>
+            <img src="{{asset('storage/identities/'.$logo->favicon)}}" class="thumbnails">
+        </div>
+        @endforeach
 
-      </div>
-      <!-- konten -->
-    </div>
-    <!-- /.row -->
-    <!-- Main row -->
-
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
-
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $("#submit").click(function(){
-
-      var dataform = $("#updateform").serialize();
-      //tinymce.triggerSave();
-      var token = $("input[name='_token']").val();
-
-      $.ajax({
-        type: "POST",
-        url : "/logo/update",
-        data: dataform,
-        beforeSend: function() {
-          $.LoadingOverlay("show");
-        },
-        success: function(msg){
-          //location.reload();
-        }
-      });
-
-    });
-  });
-  </script>
-  <!-- /.content -->
-
+    </main>
 @endsection

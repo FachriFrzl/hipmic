@@ -57,6 +57,7 @@
     <script src="{{ asset('vendor/tailwind/tailwind.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+
     <script>
         @if(session()->has('success'))
 

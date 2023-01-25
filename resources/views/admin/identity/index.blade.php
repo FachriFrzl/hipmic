@@ -51,6 +51,17 @@
                     <form class="mt-4" action="{{ route('admin.identity.update', $identities[0]->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div>
+                                    <label class="text-gray-700" for="company_logo">Logo</label>
+                                    <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white p-3" type="file" name="company_logo">
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <img src="{{asset('storage/identities/'.$identities[0]->company_logo)}}" class="admin-edit-image">
+                            </div>
+                        </div>
                         <div>
                             <label class="block">
                                 <span class="text-gray-700 text-sm">Nama Lembaga</span>

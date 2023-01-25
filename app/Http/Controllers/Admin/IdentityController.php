@@ -49,6 +49,7 @@ class IdentityController extends Controller
     public function update(Request $request, Identity $identity) // <-- Request form post and $identity (from name params at url)
     {
         $this->validate($request, [
+            'company_logo'     => 'required|image|mimes:png,svg|max:500',
             'name'             => 'required',
             'phone'            => 'required', // phone is not number, it's string value
             'email'            => 'email',
@@ -58,6 +59,7 @@ class IdentityController extends Controller
     //update dengan image baru
     $identity = identity::findOrFail($identity->id);
     $identity->update([
+        'company_logo'                  => $request->company_logo,
         'name'                          => $request->name,
         'description'                   => $request->description,
         'address'                       => $request->address,
