@@ -38,6 +38,59 @@
                     </div>
                 </div>
 
+                <div>
+                    <label class="text-gray-700" for="title">Judul</label>
+                    <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="link" value="{{ old('link', $about->link) }}">
+                    @error('link')
+                        <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
+                            <div class="px-4 py-2">
+                                <p class="text-gray-600 text-sm">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+                </div>
+            </div>
+
+                <div>
+                    <label class="text-gray-700" for="title">Sub Judul</label>
+                    <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="subtitle" value="{{ old('subtitle', $about->subtitle) }}">
+                    @error('subtitle')
+                        <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
+                            <div class="px-4 py-2">
+                                <p class="text-gray-600 text-sm">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+                </div>
+                
+                <br>
+
+            <div>
+                <label class="text-gray-700" for="name">DESKRIPSI</label>
+                <textarea name="description" rows="15">{{ old('description', $about->description) }}</textarea>
+                @error('description')
+                    <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
+                        <div class="px-4 py-2">
+                            <p class="text-gray-600 text-sm">{{ $message }}</p>
+                        </div>
+                    </div>
+                @enderror
+            </div>            
+
+            <br>
+
+            <div>
+                <label class="text-gray-700" for="name">Full Deskripsi</label>
+                <textarea name="content" rows="15">{{ old('content', $about->content) }}</textarea>
+                @error('content')
+                    <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
+                        <div class="px-4 py-2">
+                            <p class="text-gray-600 text-sm">{{ $message }}</p>
+                        </div>
+                    </div>
+                @enderror
+            </div>
+        </div>
                 <div class="flex justify-start mt-4">
                     <button type="submit" class="px-4 py-2 bg-gray-600 text-gray-200 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">UPDATE</button>
                 </div>
@@ -46,4 +99,8 @@
         
     </div>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.0/tinymce.min.js"></script>
+<script>
+    tinymce.init({selector:'textarea'});
+</script>
 @endsection

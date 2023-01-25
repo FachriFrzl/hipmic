@@ -42,31 +42,45 @@ class AboutController extends Controller
      * @param  mixed $about
      * @return void
      */
-    public function update(Request $request, About $about)
+    public function update(Request $request,$id)
     {
         $this->validate($request, [
-            'image'                 => 'required|image|mimes:jpeg,jpg,png|max:2000',
+            'title'         => 'required',
         ]); 
 
+        //check jika image kosong
+        if($request->file('image') == '') {
+            
+            //update data tanpa image
+            $about = About::findOrfail($id);
+            $about->update([
+                'title'                 => $request->title,
+                'subtitle'               => $request->subtitle,
+                'description'            => $request->description,
+                'content'                => $request->content,
+                'link'                   => $request->link,
+            ]);
 
-        //hapus image lama
-        Storage::disk('local')->delete('public/identities/'.basename($about->image));
+        } else {
+            $about = About::findOrfail($id);
+            //hapus image lama
+            Storage::disk('local')->delete('public/identities/'.basename($about->image));
 
-        //upload image baru
-        $image = $request->file('image');
-        $image->storeAs('public/identities', $image->hashName());
+            //upload image baru
+            $image = $request->file('image');
+            $image->storeAs('public/identities', $image->hashName());
 
-        //update dengan image baru
-        $about = About::findOrFail($about->id);
-        $about->update([
-            'image'         => $image->hashName(),
-            'name'          => $request->name,
-            'slug'          => Str::slug($request->name, '-'),
-            'subtutle'      => $request->subtitle,
-            'description'   => $request->description,
-            'content'       => $request->conten,
-
-        ]);
+            //update dengan image baru
+            $about = About::findOrfail($id);
+            $about->update([
+                'image'                => $image->hashName(),
+                'title'                 => $request->title,
+                'subtitle'               => $request->subtitle,
+                'description'            => $request->description,
+                'content'                => $request->content,
+                'link'                   => $request->link,
+            ]);
+        }
 
         if($about){
             //redirect dengan pesan sukses

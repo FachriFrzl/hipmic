@@ -51,9 +51,9 @@
                                 </td>
         
                                 <td class="px-5 py-2">
-                                    <b>{{ $formdaftar->grade_need }} | {{ $formdaftar -> jalur_masuk }}</b> <br>
-                                    Nama Calon Siswa: <b> {{$formdaftar->name}}</b> | {{$formdaftar->phone}} <br>
-                                    Nama Orang Tua: <b> {{$formdaftar->parent_name}}</b> | {{$formdaftar->parent_phone}}
+                        
+                                    Nama Calon Member: <b> {{$formdaftar->name}}</b> | 
+                                    <b>{{$formdaftar->phone}}</b> <br>
                                 </td>
 
                                 <td class="px-10 py-2 text-center">

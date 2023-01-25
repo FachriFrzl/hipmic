@@ -18,75 +18,49 @@
                         <td scope="col">: {{$formdaftar->name}}</td>
                     </tr>
                     <tr>
-                        <td scope="col">Kelas</td>
-                        <td scope="col">: {{$formdaftar->grade_need}}</td>
+                        <td scope="col">Alamat Lengkap</td>
+                        <td scope="col">: {{$formdaftar->address}}</td>
                     </tr>
                     <tr>
-                        <td scope="col">Jalur Masuk</td>
-                        <td scope="col">: {{$formdaftar->jalur_masuk}}</td>
+                        <td scope="col">Provinsi</td>
+                        <td scope="col">: {{$formdaftar->provinsi}}</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Kota</td>
+                        <td scope="col">: {{$formdaftar->kota}}</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Kecamatan</td>
+                        <td scope="col">: {{$formdaftar->kecamatan}}</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Kelurahan</td>
+                        <td scope="col">: {{$formdaftar->kelurahan}}</td>
                     </tr>
                     <tr>
                         <td scope="col">Tanggal Daftar</td>
                         <td scope="col">: {{ date('d M Y', strtotime($formdaftar->created_at)) }}</td>
                     </tr>
-                    <tr>
-                        <td scope="col">NIK/Passport</td>
-                        <td scope="col">: {{$formdaftar->id_number}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Tempat, Tanggal Lahir</td>
-                        <td scope="col">: {{$formdaftar->birth_place}}, {{ date('d M Y', strtotime($formdaftar->birth_place)) }}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Nomor Telepon</td>
-                        <td scope="col">: {{$formdaftar->phone}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Alamat</td>
-                        <td scope="col">:</td>
-                    </tr>
-                    <tr>
-                        <td scope="col" colspan="2" class="table-active">{{$formdaftar->address}}</td>
-                    </tr>
-                    
                 </table>
             </div>
-            <div class="col-md-6">
-            <table class="table table-striped mt-4">
-                    <tr>
-                        <td scope="col">Nama Sekolah Sebelumnya</td>
-                        <td scope="col">: {{$formdaftar->school_before}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Kelas Terakhir</td>
-                        <td scope="col">: {{$formdaftar->school_class_before}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Nama Orang Tua</td>
-                        <td scope="col">: {{$formdaftar->parent_name}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Alamat Orang Tua</td>
-                        <td scope="col">:</td>
-                    </tr>
-                    <tr>
-                        <td scope="col" colspan="2" class="table-active">{{$formdaftar->parent_address}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Data Prestasi:</td>
-                        <td scope="col">: </td>
-                    </tr>
-                    <tr>
-                        <td scope="col" colspan="2" class="table-active">{{$formdaftar->achievement}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Data Hafalan Al Qur'an:</td>
-                        <td scope="col">: </td>
-                    </tr>
-                    <tr>
-                        <td scope="col" colspan="2" class="table-active">{{$formdaftar->quran_memorized}}</td>
-                    </tr>
-                    
+            <div class="col-md-6 ">
+            <table class="table table-striped mt-5">
+                <tr>
+                    <td scope="col">Tanda Pengenal</td>
+                    <td scope="col">: {{$formdaftar->tanda_pengenal}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">NIK/Passport</td>
+                    <td scope="col">: {{$formdaftar->id_number}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Tempat, Tanggal Lahir</td>
+                    <td scope="col">: {{$formdaftar->birth_place}}, {{ date('d M Y', strtotime($formdaftar->birth_place)) }}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Nomor Telepon</td>
+                    <td scope="col">: {{$formdaftar->phone}}</td>
+                </tr>
                     
                 </table>
             </div>

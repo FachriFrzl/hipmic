@@ -22,29 +22,16 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-sm-6 mt-4">
+                    <div class="col-sm-6 mt-5">
                         <div>
-                            <label class="text-gray-700" for="image">KELAS / PROGRAM</label>
-                            <select class="w-full border bg-gray-200 focus:bg-white rounded px-3 py-2 outline-none" aria-label=".form-select-sm example" name="grade_need">
-                                <option selected>Pilih Kelas yang Diperlukan</option>
-                                <option value="NURSERY">NURSERY</option>
-                                <option value="PREKINDERGARTEN">PREKINDERGARTEN</option>
-                                <option value="KINDERGARTEN">KINDERGARTEN</option>
-                                <option value="GRADE 1">GRADE 1</option>
-                                <option value="GRADE 2">GRADE 2</option>
-                                <option value="GRADE 3">GRADE 3</option>
-                                <option value="GRADE 4">GRADE 4</option>
-                                <option value="GRADE 5">GRADE 5</option>
-                                <option value="GRADE 6">GRADE 6</option>
-                                <option value="GRADE 7">GRADE 7</option>
-                                <option value="GRADE 8">GRADE 8</option>
-                                <option value="GRADE 9">GRADE 9</option>
-                                <option value="GRADE 10">GRADE 10</option>
-                                <option value="GRADE 11">GRADE 11</option>
-                                <option value="GRADE 12">GRADE 12</option>
-                                <option value="TAHFIDZ TAKHASUS">TAHFIDZ TAKHASUS</option>
+                            <label class="text-gray-700" for="image">Tanda Pengenal</label>
+                            <select class="w-full border bg-gray-200 focus:bg-white rounded px-3 py-2 outline-none" aria-label=".form-select-sm example" name="tanda_pengenal">
+                                <option selected>Pilih Tanda Pengenal</option>
+                                <option value="KTP">KTP</option>
+                                <option value="SIM">SIM</option>
+                                <option value="PASSPORT">PASSPORT</option>
                             </select>
-                            @error('grade_need')
+                            @error('tanda_pengenal')
                                 <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
                                     <div class="px-4 py-2">
                                         <p class="text-gray-600 text-sm">{{ $message }}</p>
@@ -52,32 +39,11 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="mt-2">
-                            <label class="text-gray-700" for="jalur_masuk">JALUR MASUK</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jalur_masuk" id="Umum" value="Umum" checked>
-                                <label class="form-check-label" for="Umum">
-                                    Umum
-                                </label>
-                            </div>
-                                <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jalur_masuk" id="Beasiswa" value="Beasiswa" >
-                                <label class="form-check-label" for="Beasiswa">
-                                    Beasiswa <a href="{{route('home')}}/beasiswa">Lihat informasi beasiswa</a>
-                                </label>
-                            </div>
-                            @error('jalur_masuk')
-                                <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                                    <div class="px-4 py-2">
-                                        <p class="text-gray-600 text-sm">{{ $message }}</p>
-                                    </div>
-                                </div>
-                            @enderror
-                        </div>
+                    
 
                     </div>
                     <di class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="name">NAMA LENGKAP CALON SISWA</label>
+                        <label class="text-gray-700" for="name">NAMA LENGKAP CALON MEMBER</label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="name" value="{{ old('name') }}" placeholder="Full Name">
                         @error('name')
                             <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
@@ -88,7 +54,7 @@
                         @enderror
                     </di>
                     <di class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="id_number">NIK / NOMOR PASPOR</label>
+                        <label class="text-gray-700" for="id_number">NO KTP / NO SIM / NOMOR PASPOR</label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="id_number" value="{{ old('id_number') }}" placeholder="ID Number or Passport">
                         @error('id_number')
                             <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
@@ -125,7 +91,7 @@
                         
                     </di>
                     <di class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="phone">NOMOR HANDPHONE CALON SISWA</label>
+                        <label class="text-gray-700" for="phone">NOMOR HANDPHONE CALON MEMBER</label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
                         @error('phone')
                             <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
@@ -136,7 +102,7 @@
                         @enderror
                     </di>
                     <div class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="address">ALAMAT CALON SISWA</label>
+                        <label class="text-gray-700" for="address">ALAMAT LENGKAP</label>
                         <textarea class="w-full mt-2 rounded-md bg-gray-200 focus:bg-white" name="address" rows="7">{{ old('address') }}</textarea>
                         @error('address')
                             <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
@@ -146,41 +112,11 @@
                             </div>
                         @enderror
                     </div>
-                    <di class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="phone">NAMA SEKOLAH SEBELUMNYA</label>
-                        <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="school_before" value="{{ old('school_before') }}" placeholder="School's Name Before">
-                        @error('school_before')
-                            <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                                <div class="px-4 py-2">
-                                    <p class="text-gray-600 text-sm">{{ $message }}</p>
-                                </div>
-                            </div>
-                        @enderror
-                        <label class="text-gray-700 mt-4" for="school_class_before">KELAS SEBELUMNYA</label>
-                        <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="school_class_before" value="{{ old('school_class_before') }}" placeholder="Grade">
-                        @error('school_class_before')
-                            <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                                <div class="px-4 py-2">
-                                    <p class="text-gray-600 text-sm">{{ $message }}</p>
-                                </div>
-                            </div>
-                        @enderror
-                    </di>
+        
                     <div class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="achievement">PRESTASI CALON SISWA (Jika ada)</label>
-                        <textarea class="w-full mt-2 rounded-md bg-gray-200 focus:bg-white" name="achievement" rows="7">{{ old('achievement') }}</textarea>
-                        @error('achievement')
-                            <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                                <div class="px-4 py-2">
-                                    <p class="text-gray-600 text-sm">{{ $message }}</p>
-                                </div>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="quran_memorized">AL QUR'AN YANG SUDAH DIHAFAL (Dalam Juz, jika ada)</label>
-                        <textarea class="w-full mt-2 rounded-md bg-gray-200 focus:bg-white" name="quran_memorized" rows="7">{{ old('quran_memorized') }}</textarea>
-                        @error('quran_memorized')
+                        <label class="text-gray-700" for="address">DESKRIPSI PERUSAHAAN</label>
+                        <textarea class="w-full mt-2 rounded-md bg-gray-200 focus:bg-white" name="description" rows="7">{{ old('description') }}</textarea>
+                        @error('description_perusahaan')
                             <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
                                 <div class="px-4 py-2">
                                     <p class="text-gray-600 text-sm">{{ $message }}</p>
@@ -191,26 +127,47 @@
                     <br>
                     <hr>
                     <div class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="parent_name">NAMA ORANG TUA</label>
-                        <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="parent_name" value="{{ old('parent_name') }}" placeholder="Parent name: father or mother">
-                        @error('parent_name')
-                            <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                                <div class="px-4 py-2">
-                                    <p class="text-gray-600 text-sm">{{ $message }}</p>
-                                </div>
-                            </div>
-                        @enderror
+                        <label class="text-gray-700" for="name">Provinsi</label>
+                        <select class="w-full border bg-gray-200 focus:bg-white rounded px-3 py-2 outline-none" aria-label=".form-select-sm example" name="provinsi">
+                            <option selected>Jawa Barat</option>
+                        </select>
+                        <br>
+                        <br>
+                        <label class="text-gray-700" for="name">Kota</label>
+                        <select class="w-full border bg-gray-200 focus:bg-white rounded px-3 py-2 outline-none" aria-label=".form-select-sm example" name="kota">
+                            <option selected>Cimahi</option>
+                        </select>
+                        <br>
                     </div>
                     <div class="col-md-6 mt-4">
-                        <label class="text-gray-700" for="parent_phone">NOMOR HANDPHONE ORANG TUA</label>
-                        <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="parent_phone" value="{{ old('parent_phone') }}" placeholder="Parent's phone number">
-                        @error('parent_phone')
-                            <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                                <div class="px-4 py-2">
-                                    <p class="text-gray-600 text-sm">{{ $message }}</p>
-                                </div>
-                            </div>
-                        @enderror
+                        <label class="text-gray-700" for="name">Kecamatan</label>
+                        <select class="w-full border bg-gray-200 focus:bg-white rounded px-3 py-2 outline-none" aria-label=".form-select-sm example" name="kecamatan">
+                            <option selected>Pilih Kecamatan</option>
+                            <option value="Cimahi Utara">Cimahi Utara</option>
+                            <option value="Cimahi Tengah">Cimahi Tengah</option>
+                            <option value="Cimahi Selatan">Cimahi Selatan</option>
+                        </select>
+                        <br>
+                        <br>
+                        <label class="text-gray-700" for="name">Kelurahan</label>
+                        <select class="w-full border bg-gray-200 focus:bg-white rounded px-3 py-2 outline-none" aria-label=".form-select-sm example" name="kelurahan">
+                            <option selected>Pilih Kelurahan</option>
+                            <option value="Cibeber">Cibeber</option>
+                            <option value="Cibeurem">Cibereum</option>
+                            <option value="Leuwigajah">Leuwigajah</option>
+                            <option value="Melong">Melong</option>
+                            <option value="Utama">Utama</option>
+                            <option value="Baros">Baros</option>
+                            <option value="Cigugur tengah">Cigugur tengah</option>
+                            <option value="Cimahi">Cimahi</option>
+                            <option value="Karang mekar">Karang mekar</option>
+                            <option value="Padasuka">Padasuka</option>
+                            <option value="Setiamanah">Setiamanah</option>
+                            <option value="Cibabat">Cibabat</option>
+                            <option value="Cipageran">Cipageran</option>
+                            <option value="Citereup">Citereup</option>
+                            <option value="Pasirkaliki">Pasirkaliki</option>
+                        </select>
                     </div>
                 </div>
 

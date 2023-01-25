@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Formdaftar;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 
 class FormdaftarController extends Controller
@@ -45,16 +46,9 @@ class FormdaftarController extends Controller
     {
         $this->validate($request, [
             'image'                     => 'required|image|mimes:jpeg,jpg,png|max:2000',
-            'grade_need'                => 'required',
             'name'                      => 'required',
-            'id_number'                 => 'required',
-            'birth_place'               => 'required',
-            'birth_date'                => 'required',
-            'address'                   => 'required',
-            'school_before'             => 'required',
-            'school_class_before'       => 'required',
-            'parent_name'               => 'required',
-            'parent_phone'              => 'required',
+            
+            
         ]); 
  
         //upload image
@@ -64,23 +58,20 @@ class FormdaftarController extends Controller
         //save to DB
         $formdaftar = Formdaftar::create([
             'image'                     => $image->hashName(),
-            'grade_need'                => $request->grade_need,
-            'jalur_masuk'                => $request->jalur_masuk,
             'name'                      => $request->name,
             'id_number'                 => $request->id_number,
+            'tanda_pengenal'            => $request->tanda_pengenal,
             'birth_place'               => $request->birth_place,
             'birth_date'                => $request->birth_date,
             'phone'                     => $request->phone,
+            'description'               => $request->description,
             'address'                   => $request->address,
-            'school_before'             => $request->school_before,
-            'school_class_before'       => $request->school_class_before,
-            'parent_name'               => $request->parent_name,
-            'parent_phone'              => $request->parent_phone,
-            'parent_address'            => $request->parent_address,
-            'achievement'               => $request->achievement,
-            'quran_memorized'           => $request->quran_memorized,
-        ]);
- 
+            'provinsi'                  => $request->provinsi,
+            'kota'                      => $request->kota,
+            'kecamatan'                 => $request->kecamatan,
+            'kelurahan'                 => $request->kelurahan,
+            ]);
+        
         if($formdaftar){
              //redirect dengan pesan sukses
              return redirect()->route('admin.formdaftar.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -119,46 +110,35 @@ class FormdaftarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, formdaftar $formdaftar)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'grade_need'                => 'required',
+            'image'                     => 'required|image|mimes:jpeg,jpg,png|max:2000',
             'name'                      => 'required',
-            'id_number'                 => 'required',
-            'birth_place'               => 'required',
-            'birth_date'                => 'required',
-            'address'                   => 'required',
-            'school_before'             => 'required',
-            'school_class_before'       => 'required',
-            'parent_name'               => 'required',
-            'parent_phone'              => 'required',
         ]); 
 
         //check jika image kosong
         if($request->file('image') == '') {
             
             //update data tanpa image
-            $formdaftar = Formdaftar::findOrFail($formdaftar->id);
+            $formdaftar = Formdaftar::findOrfail($id);
             $formdaftar->update([
-                'grade_need'                => $request->grade_need,
-                'jalur_masuk'                => $request->jalur_masuk,
-                'name'                      => $request->name,
-                'id_number'                 => $request->id_number,
-                'birth_place'               => $request->birth_place,
-                'birth_date'                => $request->birth_date,
-                'phone'                     => $request->phone,
-                'address'                   => $request->address,
-                'school_before'             => $request->school_before,
-                'school_class_before'       => $request->school_class_before,
-                'parent_name'               => $request->parent_name,
-                'parent_phone'              => $request->parent_phone,
-                'parent_address'            => $request->parent_address,
-                'achievement'               => $request->achievement,
-                'quran_memorized'           => $request->quran_memorized,
+            'name'                      => $request->name,
+            'id_number'                 => $request->id_number,
+            'tanda_pengenal'            => $request->tanda_pengenal,
+            'birth_place'               => $request->birth_place,
+            'birth_date'                => $request->birth_date,
+            'phone'                     => $request->phone,
+            'description'               => $request->description,
+            'address'                   => $request->address,
+            'provinsi'                  => $request->provinsi,
+            'kota'                      => $request->kota,
+            'kecamatan'                 => $request->kecamatan,
+            'kelurahan'                 => $request->kelurahan,
             ]);
 
         } else {
-
+            $formdaftar = Formdaftar::findOrfail($id);
             //hapus image lama
             Storage::disk('local')->delete('public/formdaftars/'.basename($formdaftar->image));
 
@@ -167,24 +147,21 @@ class FormdaftarController extends Controller
             $image->storeAs('public/formdaftars', $image->hashName());
 
             //update dengan image baru
-            $formdaftar = Formdaftar::findOrFail($formdaftar->id);
+            $formdaftar = Formdaftar::findOrfail($id);
             $formdaftar->update([
-                'image'                     => $image->hashName(),
-                'grade_need'                => $request->grade_need,
-                'jalur_masuk'                => $request->jalur_masuk,
-                'name'                      => $request->name,
-                'id_number'                 => $request->id_number,
-                'birth_place'               => $request->birth_place,
-                'birth_date'                => $request->birth_date,
-                'phone'                     => $request->phone,
-                'address'                   => $request->address,
-                'school_before'             => $request->school_before,
-                'school_class_before'       => $request->school_class_before,
-                'parent_name'               => $request->parent_name,
-                'parent_phone'              => $request->parent_phone,
-                'parent_address'            => $request->parent_address,
-                'achievement'               => $request->achievement,
-                'quran_memorized'           => $request->quran_memorized,
+            'image'                     => $image->hashName(),
+            'name'                      => $request->name,
+            'id_number'                 => $request->id_number,
+            'tanda_pengenal'            => $request->tanda_pengenal,
+            'birth_place'               => $request->birth_place,
+            'birth_date'                => $request->birth_date,
+            'phone'                     => $request->phone,
+            'description'               => $request->description,
+            'address'                   => $request->address,
+            'provinsi'                  => $request->provinsi,
+            'kota'                      => $request->kota,
+            'kecamatan'                 => $request->kecamatan,
+            'kelurahan'                 => $request->kelurahan,
             ]);
         }
 

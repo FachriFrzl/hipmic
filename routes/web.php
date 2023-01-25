@@ -113,8 +113,44 @@ Route::prefix('admin')->group(function () {
        
         //route resource about
         Route::resource('/sambutan', SambutanController::class,['as' => 'admin']);
+
+        //route resource visi
+        Route::resource('/visi', VisiController::class,['as' => 'admin']);
+
+        //route resource misi
+        Route::resource('/misi', MisiController::class,['as' => 'admin']);
+
+        //route resource moto
+        Route::resource('/moto', MotoController::class,['as' => 'admin']);
         
+        //route resource program
+        Route::resource('/program', ProgramController::class, ['as' => 'admin']);
 
+        //route resource benefit
+        Route::resource('/benefit', BenefitController::class, ['as' => 'admin']);
 
+        //route resource join member
+        Route::resource('/join', JoinController::class, ['as' => 'admin']);
+
+        //route resource story
+        Route::resource('/story', StoryController::class, ['as' => 'admin']);
+
+        //route resource opening
+        Route::resource('/opening', OpeningController::class, ['as' => 'admin']);
+
+        //route resource content
+        Route::resource('/content', ContentController::class, ['as' => 'admin']);
+
+        //route resource our team
+        Route::resource('/our', OurController::class, ['as' => 'admin']);
+
+        //route resource partnership
+        Route::resource('/partner', PartnerController::class, ['as' => 'admin']);
+
+        //route resource social
+        Route::resource('/social', SocialController::class, ['as' => 'admin']);
+
+        //route resource impact
+        Route::resource('/impact', ImpactController::class, ['as' => 'admin']);
     });
 });
